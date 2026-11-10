@@ -70,24 +70,28 @@
       font-weight: 700;
       letter-spacing: -.035em;
     }
-    .tabs { display: flex; align-items: center; gap: 7px; }
+    .tabs { display: flex; align-items: center; gap: 22px; }
     .tab {
       position: relative;
       min-height: 40px;
-      padding: 0 15px;
-      border: 1px solid transparent;
+      padding: 0 2px;
+      border: 0;
+      border-bottom: 1px solid transparent;
       background: transparent;
-      color: var(--muted);
+      color: var(--quiet);
       cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      transition: color .16s ease, background .16s ease, border-color .16s ease;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .01em;
+      white-space: nowrap;
+      transition: color .16s ease, border-color .16s ease, font-size .16s ease;
     }
-    .tab:hover { color: var(--ink); background: #f7f7f7; }
+    .tab:hover { color: var(--ink); }
     .tab[aria-selected="true"] {
-      border-color: var(--ink);
-      background: var(--ink);
-      color: #fff;
+      border-bottom: 2px solid var(--ink);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
     }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
@@ -281,8 +285,9 @@
       .shell { width: calc(100% - 34px); }
       .header-inner { min-height: auto; flex-direction: column; align-items: stretch; gap: 12px; padding: 13px 0 0; }
       .brand { align-self: flex-start; }
-      .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
-      .tab { min-height: 42px; padding: 0 7px; font-size: 11px; }
+      .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .tab { min-height: 46px; padding: 0 3px; font-size: 10px; white-space: normal; line-height: 1.25; }
+      .tab[aria-selected="true"] { font-size: 11px; }
       .panel { padding: 42px 0 68px; }
       .hero { grid-template-columns: 1fr; gap: 25px; padding-bottom: 34px; }
       h1 { margin: 15px 0 14px; font-size: clamp(48px, 13vw, 68px); }
@@ -315,9 +320,9 @@
         <span class="brand-name">Thilina Sandakelum</span>
       </a>
       <nav class="tabs" role="tablist" aria-label="Portfolio sections">
-        <button class="tab" id="tab-professional" type="button" role="tab" aria-controls="professional" aria-selected="true" data-tab="professional">Professional</button>
-        <button class="tab" id="tab-creator" type="button" role="tab" aria-controls="creator" aria-selected="false" data-tab="creator" tabindex="-1">Creator</button>
-        <button class="tab" id="tab-artist" type="button" role="tab" aria-controls="artist" aria-selected="false" data-tab="artist" tabindex="-1">Artist</button>
+        <button class="tab" id="tab-professional" type="button" role="tab" aria-controls="professional" aria-selected="true" data-tab="professional">Professional Profile</button>
+        <button class="tab" id="tab-creator" type="button" role="tab" aria-controls="creator" aria-selected="false" data-tab="creator" tabindex="-1">Content Creator</button>
+        <button class="tab" id="tab-artist" type="button" role="tab" aria-controls="artist" aria-selected="false" data-tab="artist" tabindex="-1">Music Artist</button>
       </nav>
     </div>
   </header>
@@ -331,11 +336,10 @@
           <h1>Software Technology undergraduate</h1>
           <p class="hero-lead">I’m studying for a B.Tech in Software Technology at the University of Vocational Technology. I use what I learn in coursework and personal projects, mainly in web development, databases and application development.</p>
         </div>
-        <img
-          class="portrait-image"
-          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7qkJPMphsqwEjiJY-TITpp9lEkjAfgBSLeccHmeaSq9P5KmO8SAfxYM5lLH1j1aDONGLM5yb13GCh-YBfZpwbIYavkRuEWKVeBbUc0h_GI9hgIG7tGy8_Z-FeH6rxmb9q2PwoYIVvUiTb8fFD9pytwY95Si7I_xIF0fbatDLcxzOlU1Ul0FbKjKITHSg/s4736/Thilina%20Sandakelum%20Prefesional%20Setting%20Profile%20Photo.png"
-          alt="Portrait of Thilina Sandakelum"
-        >
+        <div class="portrait-placeholder" aria-label="Placeholder for a portrait photograph">
+          <strong>Portrait photo</strong>
+          <span>Add your photo here when you are ready.</span>
+        </div>
       </div>
 
       <section class="content-section" aria-labelledby="education-heading">
@@ -444,7 +448,7 @@
     <!-- ARTIST: Keep distinct from the Thilii Music creator identity. -->
     <section class="panel" id="artist" role="tabpanel" aria-labelledby="tab-artist" tabindex="0" hidden>
       <div class="profile-hero">
-        <div class="eyebrow">Artist</div>
+        <div class="eyebrow">Music</div>
         <h1>Music</h1>
         <p class="profile-lead">Music released and developed under the name Thilina Sandakelum.</p>
       </div>
@@ -463,7 +467,7 @@
   </main>
 
   <footer class="footer">
-    <div class="shell footer-inner"><span><strong>Thilina Sandakelum</strong></span><span>Professional / Creator / Artist</span></div>
+    <div class="shell footer-inner"><span><strong>Thilina Sandakelum</strong></span><span>Professional Profile / Content Creator / Music Artist</span></div>
   </footer>
 
   <script>
