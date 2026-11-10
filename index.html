@@ -42,7 +42,7 @@
     ::selection { color: #fff; background: #151515; }
     .shell { width: min(var(--width), calc(100% - 64px)); margin-inline: auto; }
 
-    /* Header: compact wordmark and understated section navigation. */
+    /* Header: one main profile link, with the other profiles tucked away. */
     .site-header {
       position: sticky;
       top: 0;
@@ -70,29 +70,59 @@
       font-weight: 700;
       letter-spacing: -.035em;
     }
-    .tabs { display: flex; align-items: center; gap: 22px; }
-    .tab {
-      position: relative;
-      min-height: 40px;
-      padding: 0 2px;
+    .site-nav { display: flex; align-items: center; gap: 24px; }
+    .primary-nav-link, .secondary-nav-link {
       border: 0;
-      border-bottom: 1px solid transparent;
       background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-family: var(--sans);
+      white-space: nowrap;
+    }
+    .primary-nav-link {
+      min-height: 40px;
+      padding: 0 0 1px;
+      border-bottom: 2px solid var(--ink);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .primary-nav-link:hover { border-color: var(--muted); }
+    .other-profiles { position: relative; }
+    .other-profiles summary {
+      padding: 8px 0;
       color: var(--quiet);
       cursor: pointer;
       font-size: 11px;
-      font-weight: 400;
-      letter-spacing: .01em;
+      line-height: 1.4;
+      list-style: none;
       white-space: nowrap;
-      transition: color .16s ease, border-color .16s ease, font-size .16s ease;
     }
-    .tab:hover { color: var(--ink); }
-    .tab[aria-selected="true"] {
-      border-bottom: 2px solid var(--ink);
+    .other-profiles summary::-webkit-details-marker { display: none; }
+    .other-profiles summary::after { content: " +"; color: var(--muted); }
+    .other-profiles[open] summary { color: var(--ink); }
+    .other-profiles-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 30;
+      min-width: 160px;
+      padding: 5px 0;
+      border: 1px solid var(--rule-strong);
+      background: var(--paper);
+    }
+    .secondary-nav-link {
+      display: block;
+      width: 100%;
+      padding: 9px 12px;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: left;
+    }
+    .secondary-nav-link:hover, .secondary-nav-link[aria-current="page"] {
       color: var(--ink);
-      font-size: 13px;
-      font-weight: 700;
     }
+    .secondary-nav-link[aria-current="page"] { font-weight: 700; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
     main { min-height: calc(100vh - 155px); }
@@ -140,7 +170,7 @@
       font-size: 12px;
     }
 
-    /* Replace this placeholder with a real image when one is ready. */
+    /* Portrait supplied for the Professional Profile. */
     .portrait-image {
       display: block;
       width: 100%;
@@ -148,23 +178,6 @@
       object-fit: cover;
       object-position: center;
     }
-    .portrait-placeholder {
-      min-height: 282px;
-      aspect-ratio: 4 / 5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 13px;
-      padding: 20px;
-      border: 1px solid var(--rule-strong);
-      background: #f7f7f7;
-      color: var(--muted);
-      text-align: center;
-    }
-        .portrait-placeholder strong { color: var(--ink); font-size: 12px; font-weight: 600; }
-    .portrait-placeholder span { max-width: 145px; font-size: 11px; line-height: 1.6; }
-
     .content-section, .profile-block {
       display: grid;
       grid-template-columns: 180px minmax(0, 1fr);
@@ -279,20 +292,18 @@
       .hero { grid-template-columns: minmax(0, 1fr) 190px; gap: 28px; }
       .content-section, .profile-block { grid-template-columns: 1fr; gap: 16px; }
       .section-heading h2, .profile-block h2 { font-size: 25px; }
-      .portrait-placeholder { min-height: 235px; }
     }
     @media (max-width: 560px) {
       .shell { width: calc(100% - 34px); }
-      .header-inner { min-height: auto; flex-direction: column; align-items: stretch; gap: 12px; padding: 13px 0 0; }
+      .header-inner { min-height: auto; flex-direction: column; align-items: flex-start; gap: 7px; padding: 13px 0 9px; }
       .brand { align-self: flex-start; }
-      .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-      .tab { min-height: 46px; padding: 0 3px; font-size: 10px; white-space: normal; line-height: 1.25; }
-      .tab[aria-selected="true"] { font-size: 11px; }
+      .site-nav { width: 100%; justify-content: space-between; gap: 14px; }
+      .primary-nav-link { min-height: 36px; font-size: 11px; }
+      .other-profiles summary { font-size: 10px; }
       .panel { padding: 42px 0 68px; }
       .hero { grid-template-columns: 1fr; gap: 25px; padding-bottom: 34px; }
       h1 { margin: 15px 0 14px; font-size: clamp(48px, 13vw, 68px); }
       .hero-lead { font-size: 16px; }
-      .portrait-placeholder { width: min(100%, 220px); min-height: 250px; justify-self: start; }
       .content-section, .profile-block { padding: 27px 0; }
       .education-entry { grid-template-columns: 1fr; gap: 5px; }
       .skill-groups { grid-template-columns: 1fr; }
@@ -319,27 +330,29 @@
       <a class="brand" href="#professional" aria-label="Thilina Sandakelum home">
         <span class="brand-name">Thilina Sandakelum</span>
       </a>
-      <nav class="tabs" role="tablist" aria-label="Portfolio sections">
-        <button class="tab" id="tab-professional" type="button" role="tab" aria-controls="professional" aria-selected="true" data-tab="professional">Professional Profile</button>
-        <button class="tab" id="tab-creator" type="button" role="tab" aria-controls="creator" aria-selected="false" data-tab="creator" tabindex="-1">Content Creator</button>
-        <button class="tab" id="tab-artist" type="button" role="tab" aria-controls="artist" aria-selected="false" data-tab="artist" tabindex="-1">Music Artist</button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <button class="primary-nav-link" id="tab-professional" type="button" aria-controls="professional" aria-current="page" data-tab="professional">Professional Profile</button>
+        <details class="other-profiles">
+          <summary>More</summary>
+          <div class="other-profiles-menu">
+            <button class="secondary-nav-link" id="tab-creator" type="button" aria-controls="creator" data-tab="creator">Content Creator</button>
+            <button class="secondary-nav-link" id="tab-artist" type="button" aria-controls="artist" data-tab="artist">Music Artist</button>
+          </div>
+        </details>
       </nav>
     </div>
   </header>
 
   <main class="shell">
     <!-- PROFESSIONAL: Keep this as the default landing section. Add new career sections before its closing tag. -->
-    <section class="panel active" id="professional" role="tabpanel" aria-labelledby="tab-professional" tabindex="0">
+    <section class="panel active" id="professional" aria-labelledby="tab-professional">
       <div class="hero">
         <div>
           <div class="eyebrow">B.Tech in Software Technology · University of Vocational Technology</div>
           <h1>Software Technology undergraduate</h1>
           <p class="hero-lead">I’m studying for a B.Tech in Software Technology at the University of Vocational Technology. I use what I learn in coursework and personal projects, mainly in web development, databases and application development.</p>
         </div>
-        <div class="portrait-placeholder" aria-label="Placeholder for a portrait photograph">
-          <strong>Portrait photo</strong>
-          <span>Add your photo here when you are ready.</span>
-        </div>
+        <img class="portrait-image" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7qkJPMphsqwEjiJY-TITpp9lEkjAfgBSLeccHmeaSq9P5KmO8SAfxYM5lLH1j1aDONGLM5yb13GCh-YBfZpwbIYavkRuEWKVeBbUc0h_GI9hgIG7tGy8_Z-FeH6rxmb9q2PwoYIVvUiTb8fFD9pytwY95Si7I_xIF0fbatDLcxzOlU1Ul0FbKjKITHSg/s4736/Thilina%20Sandakelum%20Prefesional%20Setting%20Profile%20Photo.png" alt="Thilina Sandakelum" fetchpriority="high" decoding="async" referrerpolicy="no-referrer">
       </div>
 
       <section class="content-section" aria-labelledby="education-heading">
@@ -398,7 +411,7 @@
     </section>
 
     <!-- CREATOR: Keep audience figures clearly labelled as historical milestones, not live account counts. -->
-    <section class="panel" id="creator" role="tabpanel" aria-labelledby="tab-creator" tabindex="0" hidden>
+    <section class="panel" id="creator" aria-labelledby="tab-creator" hidden>
       <div class="profile-hero">
         <div class="eyebrow">Creator</div>
         <h1>Thilii Music</h1>
@@ -446,7 +459,7 @@
     </section>
 
     <!-- ARTIST: Keep distinct from the Thilii Music creator identity. -->
-    <section class="panel" id="artist" role="tabpanel" aria-labelledby="tab-artist" tabindex="0" hidden>
+    <section class="panel" id="artist" aria-labelledby="tab-artist" hidden>
       <div class="profile-hero">
         <div class="eyebrow">Music</div>
         <h1>Music</h1>
@@ -467,48 +480,41 @@
   </main>
 
   <footer class="footer">
-    <div class="shell footer-inner"><span><strong>Thilina Sandakelum</strong></span><span>Professional Profile / Content Creator / Music Artist</span></div>
+    <div class="shell footer-inner"><span>© 2026 Thilina Sandakelum</span></div>
   </footer>
 
   <script>
     (() => {
-      const tabs = Array.from(document.querySelectorAll('[data-tab]'));
+      const navigationItems = Array.from(document.querySelectorAll('[data-tab]'));
       const panels = Array.from(document.querySelectorAll('.panel'));
-      const validTabs = new Set(tabs.map(tab => tab.dataset.tab));
+      const validSections = new Set(navigationItems.map(item => item.dataset.tab));
+      const moreProfiles = document.querySelector('.other-profiles');
 
-      function activateTab(name, updateHash = true, moveFocus = false) {
-        if (!validTabs.has(name)) name = 'professional';
-        tabs.forEach(tab => {
-          const active = tab.dataset.tab === name;
-          tab.setAttribute('aria-selected', String(active));
-          tab.tabIndex = active ? 0 : -1;
+      function showSection(name, updateHash = true) {
+        if (!validSections.has(name)) name = 'professional';
+
+        navigationItems.forEach(item => {
+          if (item.dataset.tab === name) item.setAttribute('aria-current', 'page');
+          else item.removeAttribute('aria-current');
         });
+
         panels.forEach(panel => {
           const active = panel.id === name;
           panel.classList.toggle('active', active);
           panel.hidden = !active;
         });
+
+        if (moreProfiles) moreProfiles.open = false;
         if (updateHash && location.hash !== `#${name}`) history.replaceState(null, '', `#${name}`);
-        if (moveFocus) document.getElementById(`tab-${name}`).focus();
         window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       }
 
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activateTab(tab.dataset.tab));
-        tab.addEventListener('keydown', event => {
-          let nextIndex = index;
-          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
-          else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
-          else if (event.key === 'Home') nextIndex = 0;
-          else if (event.key === 'End') nextIndex = tabs.length - 1;
-          else return;
-          event.preventDefault();
-          activateTab(tabs[nextIndex].dataset.tab, true, true);
-        });
+      navigationItems.forEach(item => {
+        item.addEventListener('click', () => showSection(item.dataset.tab));
       });
 
-      const initial = location.hash.slice(1);
-      if (validTabs.has(initial)) activateTab(initial, false);
+      const initialSection = location.hash.slice(1);
+      if (validSections.has(initialSection)) showSection(initialSection, false);
     })();
   </script>
 </body>
