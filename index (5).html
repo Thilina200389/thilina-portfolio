@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="The professional portfolio of Thilina Sandakelum, Software Technology undergraduate at the University of Vocational Technology, with separate creator and artist profiles.">
+  <meta property="og:title" content="Thilina Sandakelum — Portfolio">
+  <meta property="og:description" content="Software Technology, selected projects, creator work and music.">
+  <meta property="og:type" content="website">
+  <title>Thilina Sandakelum — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fff;
+      --ink: #151515;
+      --muted: #686868;
+      --quiet: #929292;
+      --rule: #e5e5e5;
+      --rule-strong: #c8c8c8;
+      --serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "DM Mono", "Courier New", monospace;
+      --width: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    ::selection { color: #fff; background: #151515; }
+    .shell { width: min(var(--width), calc(100% - 64px)); margin-inline: auto; }
+
+    /* Header: compact wordmark and understated section navigation. */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid var(--rule);
+    }
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--ink);
+      text-decoration: none;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1;
+      letter-spacing: -.08em;
+    }
+    .brand-copy { display: flex; flex-direction: column; line-height: 1.25; }
+    .brand-name { font-size: 14px; font-weight: 700; letter-spacing: -.025em; }
+    .brand-caption {
+      margin-top: 4px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .tabs { display: flex; align-items: center; gap: 7px; }
+    .tab {
+      position: relative;
+      min-height: 40px;
+      padding: 0 15px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: color .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .tab:hover { color: var(--ink); background: #f7f7f7; }
+    .tab[aria-selected="true"] {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #fff;
+    }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+    main { min-height: calc(100vh - 155px); }
+    .panel { display: none; padding: 70px 0 100px; }
+    .panel.active { display: block; }
+    .panel[hidden] { display: none; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 230px;
+      gap: 64px;
+      align-items: center;
+      padding: 0 0 54px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .eyebrow, .section-kicker, .meta-label, .project-meta, .small-note, .stat-label {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .075em;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 740px;
+      margin: 18px 0 17px;
+      font-family: var(--serif);
+      font-size: clamp(56px, 7.2vw, 88px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: .99;
+    }
+    .hero-lead {
+      max-width: 650px;
+      margin: 0;
+      color: #414141;
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.75;
+    }
+    .hero-note {
+      margin: 25px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Replace this placeholder with a real image when one is ready. */
+    .portrait-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+    }
+    .portrait-placeholder {
+      min-height: 282px;
+      aspect-ratio: 4 / 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 20px;
+      border: 1px solid var(--rule-strong);
+      background: #fafafa;
+      color: var(--muted);
+      text-align: center;
+    }
+    .portrait-placeholder svg { width: 42px; height: 42px; stroke: #858585; }
+    .portrait-placeholder strong { color: var(--ink); font-size: 12px; font-weight: 600; }
+    .portrait-placeholder span { max-width: 145px; font-size: 11px; line-height: 1.6; }
+
+    .content-section, .profile-block {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 48px;
+      padding: 38px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-heading { padding-top: 4px; }
+    .section-heading h2, .profile-block h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 27px;
+      font-weight: 400;
+      letter-spacing: -.035em;
+      line-height: 1.2;
+    }
+    .section-kicker { display: block; margin-bottom: 9px; }
+    .body-copy { max-width: 750px; margin: 0; color: #444; font-size: 14px; line-height: 1.9; }
+
+    .education-entry {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 24px;
+    }
+    .entry-date { color: var(--muted); font-family: var(--mono); font-size: 10px; line-height: 1.7; }
+    .entry-title { margin: 0 0 5px; font-size: 15px; font-weight: 700; letter-spacing: -.015em; }
+    .entry-place { margin: 0 0 8px; color: var(--muted); font-size: 12px; }
+    .entry-description { max-width: 690px; margin: 0; color: #4b4b4b; font-size: 13px; line-height: 1.85; }
+
+    .skill-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+    .skill-group { padding: 14px 0 15px; border-top: 1px solid var(--rule); }
+    .skill-group h3 { margin: 0 0 5px; font-size: 13px; font-weight: 700; }
+    .skill-group p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .small-note { margin: 13px 0 0; text-transform: none; letter-spacing: 0; font-size: 10px; }
+
+    .project-list { border-top: 1px solid var(--ink); }
+    .project {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 135px;
+      gap: 24px;
+      align-items: start;
+      padding: 20px 0 21px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .project h3 { margin: 0 0 5px; font-size: 15px; font-weight: 700; letter-spacing: -.015em; }
+    .project p { max-width: 710px; margin: 0; color: #4d4d4d; font-size: 13px; line-height: 1.8; }
+    .project-meta { display: block; margin-top: 7px; color: var(--quiet); font-size: 9px; }
+    .project-side { justify-self: end; padding-top: 2px; color: var(--muted); font-size: 11px; text-align: right; }
+    .project-link { color: var(--ink); font-size: 11px; font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .project-link:hover { text-decoration-thickness: 2px; }
+
+    .profile-hero {
+      max-width: 850px;
+      padding: 6px 0 42px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .profile-hero h1 { font-size: clamp(52px, 6.8vw, 78px); }
+    .profile-lead { max-width: 690px; margin: 0; color: #414141; font-size: 17px; line-height: 1.75; }
+    .profile-block { padding: 34px 0; }
+    .profile-block p { max-width: 750px; margin: 0 0 12px; color: #444; font-size: 13px; line-height: 1.9; }
+    .profile-block p:last-child { margin-bottom: 0; }
+
+    .growth-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .growth-item { padding: 13px 0 0; border-top: 1px solid var(--rule-strong); }
+    .growth-value { display: block; margin-bottom: 2px; font-family: var(--serif); font-size: 34px; font-weight: 400; letter-spacing: -.04em; line-height: 1.3; }
+    .growth-platform { display: block; color: var(--ink); font-size: 12px; font-weight: 700; }
+    .growth-caption { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+    .growth-caveat { margin: 14px 0 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+
+    .platform-list { border-top: 1px solid var(--rule); }
+    .platform-row {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr) 150px;
+      gap: 20px;
+      align-items: baseline;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .platform-row strong { font-size: 13px; font-weight: 700; }
+    .platform-row span { color: var(--muted); font-size: 12px; }
+    .platform-row .platform-note { color: var(--quiet); font-size: 10px; text-align: right; }
+
+    .release-list { border-top: 1px solid var(--ink); }
+    .release-row {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr) 150px;
+      gap: 20px;
+      align-items: baseline;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .release-row strong { font-family: var(--serif); font-size: 22px; font-weight: 400; }
+    .release-row span { color: var(--muted); font-size: 11px; }
+    .release-row .release-type { color: var(--quiet); font-size: 10px; text-align: right; }
+
+    .footer { border-top: 1px solid var(--ink); }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0 22px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+    .footer strong { color: var(--ink); font-weight: 700; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(var(--width), calc(100% - 40px)); }
+      .hero { grid-template-columns: minmax(0, 1fr) 190px; gap: 28px; }
+      .content-section, .profile-block { grid-template-columns: 1fr; gap: 16px; }
+      .section-heading h2, .profile-block h2 { font-size: 25px; }
+      .portrait-placeholder { min-height: 235px; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: calc(100% - 34px); }
+      .header-inner { min-height: auto; flex-direction: column; align-items: stretch; gap: 12px; padding: 13px 0 0; }
+      .brand { align-self: flex-start; }
+      .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+      .tab { min-height: 42px; padding: 0 7px; font-size: 11px; }
+      .panel { padding: 42px 0 68px; }
+      .hero { grid-template-columns: 1fr; gap: 25px; padding-bottom: 34px; }
+      h1 { margin: 15px 0 14px; font-size: clamp(48px, 13vw, 68px); }
+      .hero-lead { font-size: 16px; }
+      .portrait-placeholder { width: min(100%, 220px); min-height: 250px; justify-self: start; }
+      .content-section, .profile-block { padding: 27px 0; }
+      .education-entry { grid-template-columns: 1fr; gap: 5px; }
+      .skill-groups { grid-template-columns: 1fr; }
+      .project { grid-template-columns: 1fr; gap: 7px; padding: 17px 0; }
+      .project-side { justify-self: start; text-align: left; }
+      .profile-hero { padding: 0 0 32px; }
+      .profile-hero h1 { font-size: clamp(46px, 12vw, 62px); }
+      .profile-lead { font-size: 15px; }
+      .growth-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+      .growth-value { font-size: 30px; }
+      .platform-row, .release-row { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
+      .platform-row .platform-note, .release-row .release-type { text-align: left; }
+      .footer-inner { flex-direction: column; gap: 3px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#professional" aria-label="Thilina Sandakelum — Professional portfolio">
+        <span class="brand-mark" aria-hidden="true">TS</span>
+        <span class="brand-copy">
+          <span class="brand-name">Personal portfolio</span>
+          <span class="brand-caption">Professional · Creator · Artist</span>
+        </span>
+      </a>
+      <nav class="tabs" role="tablist" aria-label="Portfolio sections">
+        <button class="tab" id="tab-professional" type="button" role="tab" aria-controls="professional" aria-selected="true" data-tab="professional">Professional</button>
+        <button class="tab" id="tab-creator" type="button" role="tab" aria-controls="creator" aria-selected="false" data-tab="creator" tabindex="-1">Creator</button>
+        <button class="tab" id="tab-artist" type="button" role="tab" aria-controls="artist" aria-selected="false" data-tab="artist" tabindex="-1">Artist</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- PROFESSIONAL: Keep this as the default landing section. Add new career sections before its closing tag. -->
+    <section class="panel active" id="professional" role="tabpanel" aria-labelledby="tab-professional" tabindex="0">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Software Technology · University of Vocational Technology</div>
+          <h1>Thilina Sandakelum</h1>
+          <p class="hero-lead">Software Technology undergraduate interested in practical software development, application architecture and building useful digital tools.</p>
+          <p class="hero-note">B.Tech in Software Technology · Sri Lanka</p>
+        </div>
+        <div class="portrait-placeholder" aria-label="Placeholder for a portrait photograph">
+          <svg viewBox="0 0 48 48" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="24" cy="16" r="8"></circle>
+            <path d="M9 41c1.8-8.1 7.1-12.2 15-12.2S37.2 32.9 39 41"></path>
+            <path d="M5 5h8M5 5v8M43 5h-8M43 5v8M5 43v-8M5 43h8M43 43h-8M43 43v-8"></path>
+          </svg>
+          <strong>Portrait photograph</strong>
+          <span>Photo placeholder — add your image here when ready.</span>
+        </div>
+      </div>
+
+      <section class="content-section" aria-labelledby="education-heading">
+        <div class="section-heading"><span class="section-kicker">Background</span><h2 id="education-heading">Education</h2></div>
+        <div class="section-body">
+          <article class="education-entry">
+            <div class="entry-date">2023 / 2024 intake</div>
+            <div>
+              <h3 class="entry-title">Bachelor of Technology in Software Technology</h3>
+              <p class="entry-place">University of Vocational Technology (UoVT) · Sri Lanka</p>
+              <p class="entry-description">Undergraduate studies in software technology and applied computing, with academic work covering software development, database systems, data communication, embedded systems and software design.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="technical-heading">
+        <div class="section-heading"><span class="section-kicker">Areas explored</span><h2 id="technical-heading">Technical background</h2></div>
+        <div class="section-body">
+          <div class="skill-groups">
+            <div class="skill-group"><h3>Web development</h3><p>HTML, CSS, JavaScript and PHP through web projects and coursework.</p></div>
+            <div class="skill-group"><h3>Programming</h3><p>Python and Kotlin explored through programming tasks and application concepts.</p></div>
+            <div class="skill-group"><h3>Databases</h3><p>MySQL, database design and normalization.</p></div>
+            <div class="skill-group"><h3>Application design</h3><p>MVC architecture, software design patterns and Git/GitHub workflows.</p></div>
+            <div class="skill-group"><h3>Mobile development</h3><p>Android development concepts and Jetpack Compose.</p></div>
+            <div class="skill-group"><h3>Embedded systems</h3><p>Sensor-based monitoring concepts and embedded software design.</p></div>
+          </div>
+          <p class="small-note">These are areas covered through learning and project work, not a ranking of professional proficiency.</p>
+        </div>
+      </section>
+
+      <section class="content-section" id="projects" aria-labelledby="projects-heading">
+        <div class="section-heading"><span class="section-kicker">Selected work</span><h2 id="projects-heading">Projects</h2></div>
+        <div class="section-body">
+          <div class="project-list">
+            <article class="project">
+              <div><h3>VIZ Patch</h3><p>An offline browser-based utility for replacing embedded image resources in Avee Player .viz templates and exporting the modified files.</p><span class="project-meta">Independent project · HTML · CSS · JavaScript</span></div>
+              <div class="project-side"><a class="project-link" href="https://thilina200389.github.io/viz-patch/" target="_blank" rel="noopener noreferrer">View project ↗</a></div>
+            </article>
+            <article class="project">
+              <div><h3>VIZ Library</h3><p>A web-based project for organising Avee Player templates, displaying previews and providing downloadable files with Google Drive integration.</p><span class="project-meta">Independent project · Google Apps Script · Google Drive</span></div>
+              <span class="project-side">Web project</span>
+            </article>
+            <article class="project">
+              <div><h3>Restaurant Table Reservation System</h3><p>An academic application for managing restaurant table reservations, planned around the Model–View–Controller pattern.</p><span class="project-meta">Academic project · PHP · MySQL · MVC</span></div>
+              <span class="project-side">Coursework</span>
+            </article>
+            <article class="project">
+              <div><h3>Smart Greenhouse Monitoring</h3><p>A group project exploring an embedded monitoring system using temperature and soil-moisture sensor readings.</p><span class="project-meta">Group project · Embedded systems · Sensor data</span></div>
+              <span class="project-side">In progress</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADD A PROFESSIONAL SECTION HERE: duplicate a content-section block and update its heading and content. -->
+    </section>
+
+    <!-- CREATOR: Keep audience figures clearly labelled as historical milestones, not live account counts. -->
+    <section class="panel" id="creator" role="tabpanel" aria-labelledby="tab-creator" tabindex="0" hidden>
+      <div class="profile-hero">
+        <div class="eyebrow">Digital creator</div>
+        <h1>Thilii Music</h1>
+        <p class="profile-lead">A creator identity built around audio visualizer videos, Avee Player templates and music-led digital content.</p>
+      </div>
+
+      <section class="profile-block">
+        <div><span class="section-kicker">Introduction</span><h2>About</h2></div>
+        <div>
+          <p>Thilii Music is my creator identity for audio visualizer content and digital creative work. I create music visualizer videos and Avee Player templates, exploring different visual styles and music formats.</p>
+          <p>My content has included phonk, Brazilian funk, and slowed or reverb edits. Alongside publishing content, I develop tools and resources for working with Avee Player templates.</p>
+        </div>
+      </section>
+
+      <section class="profile-block">
+        <div><span class="section-kicker">Audience</span><h2>Account growth</h2></div>
+        <div>
+          <div class="growth-grid">
+            <div class="growth-item"><strong class="growth-value">780K+</strong><span class="growth-platform">TikTok</span><span class="growth-caption">Followers · previously shared milestone</span></div>
+            <div class="growth-item"><strong class="growth-value">57K+</strong><span class="growth-platform">YouTube</span><span class="growth-caption">Subscribers · previously shared milestone</span></div>
+            <div class="growth-item"><strong class="growth-value">300K+</strong><span class="growth-platform">Facebook</span><span class="growth-caption">Followers · previously shared milestone</span></div>
+          </div>
+          <p class="growth-caveat">These are historical audience milestones shared previously, not live account counts. Figures may have changed.</p>
+        </div>
+      </section>
+
+      <section class="profile-block">
+        <div><span class="section-kicker">Platforms</span><h2>Creator channels</h2></div>
+        <div class="platform-list">
+          <div class="platform-row"><strong>YouTube</strong><span>Audio visualizer videos and creative content</span><span class="platform-note">Channel active since 2020</span></div>
+          <div class="platform-row"><strong>TikTok</strong><span>Short-form audio visualizer content</span><span class="platform-note">Channel active since 2021</span></div>
+          <div class="platform-row"><strong>Facebook</strong><span>Thilii Music page and visualizer content</span><span class="platform-note">Creator page</span></div>
+        </div>
+      </section>
+
+      <section class="profile-block">
+        <div><span class="section-kicker">Digital publishing</span><h2>Zedge</h2></div>
+        <div>
+          <p>Contributor to the Zedge Premium Marketplace, creating and publishing digital wallpaper content.</p>
+          <p>My work in this area includes AI-assisted visual concepts and mobile wallpaper designs prepared for digital audiences.</p>
+        </div>
+      </section>
+
+      <section class="profile-block">
+        <div><span class="section-kicker">Creative tools</span><h2>Selected work</h2></div>
+        <div class="project-list">
+          <article class="project"><div><h3>VIZ Patch</h3><p>An independent offline utility that replaces embedded image resources in Avee Player .viz templates that may fail when edited inside the app.</p><span class="project-meta">Unofficial community utility · Browser-based</span></div><div class="project-side"><a class="project-link" href="https://thilina200389.github.io/viz-patch/" target="_blank" rel="noopener noreferrer">Visit VIZ Patch ↗</a></div></article>
+          <article class="project"><div><h3>VIZ Library</h3><p>A project for organising visualizer templates with preview images and downloadable .viz files, using Google Drive for file storage.</p><span class="project-meta">Template library · Google Drive integration</span></div><span class="project-side">Web project</span></article>
+          <article class="project"><div><h3>Avee Player visualizer templates</h3><p>Reusable visualizer styles created for music-led video content.</p><span class="project-meta">Avee Player · .viz templates</span></div><span class="project-side">Creative work</span></article>
+        </div>
+      </section>
+
+      <!-- ADD NEW CREATOR WORK HERE: duplicate a profile-block or project row and edit the text. -->
+    </section>
+
+    <!-- ARTIST: Keep distinct from the Thilii Music creator identity. -->
+    <section class="panel" id="artist" role="tabpanel" aria-labelledby="tab-artist" tabindex="0" hidden>
+      <div class="profile-hero">
+        <div class="eyebrow">Artist profile</div>
+        <h1>Thilina Sandakelum</h1>
+        <p class="profile-lead">My personal music identity, separate from Thilii Music and its visualizer content.</p>
+      </div>
+
+      <section class="profile-block">
+        <div><span class="section-kicker">Introduction</span><h2>About</h2></div>
+        <div><p>This profile is dedicated to my own music and artist releases under the name Thilina Sandakelum.</p></div>
+      </section>
+
+      <section class="profile-block">
+        <div><span class="section-kicker">Discography</span><h2>Selected music</h2></div>
+        <div class="release-list">
+          <div class="release-row"><span>First release</span><strong>Kopi Crime</strong><span class="release-type">Release</span></div>
+          <div class="release-row"><span>Track project</span><strong>Phantom Dream</strong><span class="release-type">Spotify pitch</span></div>
+        </div>
+      </section>
+
+      <!-- ADD RELEASES OR VERIFIED STREAMING LINKS HERE when they are ready. -->
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner"><span><strong>Thilina Sandakelum</strong></span><span>Professional · Creator · Artist</span></div>
+  </footer>
+
+  <script>
+    (() => {
+      const tabs = Array.from(document.querySelectorAll('[data-tab]'));
+      const panels = Array.from(document.querySelectorAll('.panel'));
+      const validTabs = new Set(tabs.map(tab => tab.dataset.tab));
+
+      function activateTab(name, updateHash = true, moveFocus = false) {
+        if (!validTabs.has(name)) name = 'professional';
+        tabs.forEach(tab => {
+          const active = tab.dataset.tab === name;
+          tab.setAttribute('aria-selected', String(active));
+          tab.tabIndex = active ? 0 : -1;
+        });
+        panels.forEach(panel => {
+          const active = panel.id === name;
+          panel.classList.toggle('active', active);
+          panel.hidden = !active;
+        });
+        if (updateHash && location.hash !== `#${name}`) history.replaceState(null, '', `#${name}`);
+        if (moveFocus) document.getElementById(`tab-${name}`).focus();
+        window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activateTab(tab.dataset.tab));
+        tab.addEventListener('keydown', event => {
+          let nextIndex = index;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === 'Home') nextIndex = 0;
+          else if (event.key === 'End') nextIndex = tabs.length - 1;
+          else return;
+          event.preventDefault();
+          activateTab(tabs[nextIndex].dataset.tab, true, true);
+        });
+      });
+
+      const initial = location.hash.slice(1);
+      if (validTabs.has(initial)) activateTab(initial, false);
+    })();
+  </script>
+</body>
+</html>
