@@ -3,16 +3,51 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Thilina Sandakelum — Software Technology undergraduate at the University of Vocational Technology. Education, software projects, creator work and music.">
-    <meta property="og:title" content="Thilina Sandakelum — Portfolio">
-    <meta property="og:description" content="Software Technology studies, software projects, creator work and music.">
-    <meta property="og:type" content="website">
+    <!-- Site Metadata -->
+<meta name="theme-color" content="#ffffff">
+<meta name="author" content="Thilina Sandakelum">
+
+<meta name="description"
+      content="Thilina Sandakelum — Software Technology undergraduate, digital content creator and independent music artist.">
+
+<title>Thilina Sandakelum — Portfolio</title>
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thilina Sandakelum">
+<meta property="og:title" content="Thilina Sandakelum — Portfolio">
+
+<meta property="og:description"
+      content="Software Technology, digital content creation and independent music. Explore my projects and creative work.">
+
+<meta property="og:url"
+      content="https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/">
+
+<meta property="og:image"
+      content="https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/og-image.png">
+
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thilina Sandakelum — Portfolio">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thilina Sandakelum — Portfolio">
+<meta name="twitter:description"
+      content="Software Technology, digital content creation and independent music.">
+<meta name="twitter:image"
+      content="https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/og-image.png">
     <title>Thilina Sandakelum — Portfolio</title>
     <style>
     :root {
       color-scheme: light;
-      --paper: #fff;
+      --paper: #FAF9F6;
       --ink: #151515;
       --muted: #686868;
       --quiet: #929292;
@@ -240,6 +275,13 @@
       grid-template-columns: 155px minmax(0, 1fr);
       gap: 24px;
     }
+	
+	.education-entry + .education-entry {
+	  margin-top: 26px;
+	  padding-top: 26px;
+	  border-top: 1px solid var(--rule);
+	}
+
     .entry-date { color: var(--muted); font-family: var(--mono); font-size: 10px; line-height: 1.7; }
     .entry-title { margin: 0 0 5px; font-size: 15px; font-weight: 700; letter-spacing: -.015em; }
     .entry-place { margin: 0 0 8px; color: var(--muted); font-size: 12px; }
@@ -347,6 +389,192 @@
       .platform-row, .release-row { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
       .platform-row .platform-note, .release-row .release-type { text-align: left; }
     }
+    /* Artist platform cards */
+.artist-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.artist-platform-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 120px;
+  padding: 17px 18px;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color .15s ease;
+}
+
+.artist-platform-card:hover {
+  border-color: var(--ink);
+}
+
+.artist-platform-name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.artist-platform-description {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.artist-platform-action {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+/* Music track list with artwork */
+.release-row {
+  display: grid;
+  grid-template-columns: 52px 115px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.release-artwork {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+
+.release-category {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.release-info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.release-info strong {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.release-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.release-links a {
+  font-size: 11px;
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .release-row {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 3px 12px;
+  }
+
+  .release-artwork {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: 42px;
+    height: 42px;
+  }
+
+  .release-category,
+  .release-info,
+  .release-links {
+    grid-column: 2;
+  }
+
+  .release-links {
+    justify-content: flex-start;
+    margin-top: 4px;
+  }
+}
+/* Featured remix highlight */
+.featured-remix-card {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  padding: 20px;
+  border: 1px solid var(--rule);
+}
+
+.featured-remix-artwork {
+  display: block;
+  width: 110px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+
+.featured-remix-content h3 {
+  margin: 0 0 5px;
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.featured-remix-meta {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.featured-remix-description {
+  margin: 0;
+  color: #444;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.featured-remix-link {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 11px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .featured-remix-card {
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .featured-remix-artwork {
+    width: 76px;
+  }
+
+  .featured-remix-content h3 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 560px) {
+  .artist-platform-grid {
+    grid-template-columns: 1fr;
+  }
+}
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; }
@@ -639,7 +867,7 @@
     <div class="section-body">
       <div class="project-list">
 
-        Certification entry
+        
         <article class="project">
           <div>
             <h3>Certification Name</h3>
@@ -661,7 +889,7 @@
           </div>
         </article>
 
-        Achievement entry
+        
         <article class="project">
           <div>
             <h3>Achievement Name</h3>
@@ -735,99 +963,498 @@
       </section>
       <!-- CREATOR: Keep audience figures clearly labelled as historical milestones, not live account counts. -->
       <section class="panel" id="creator" aria-labelledby="tab-creator" hidden>
-        <div class="profile-hero">
-          <div class="eyebrow">Creator</div>
-          <h1>Thilii Music</h1>
-          <p class="profile-lead">Audio visualizer videos and Avee Player templates.</p>
-        </div>
-        <section class="profile-block">
-          <div>
-            <h2>About</h2>
-          </div>
-          <div>
-            <p>I started my YouTube channel in June 2020 and began posting on TikTok in February 2021. Most of my videos are audio visualizers made with Avee Player.</p>
-            <p>The music in my videos often includes phonk, Brazilian funk and slowed or reverb edits. I also make Avee Player visualizer templates.</p>
-          </div>
-        </section>
-        <section class="profile-block">
-          <div>
-            <h2>Account growth</h2>
-          </div>
-          <div>
-            <div class="growth-grid">
-              <div class="growth-item">
-                <strong class="growth-value">780K+</strong>
-                <span class="growth-platform">TikTok</span>
-                <span class="growth-caption">TikTok audience</span>
-              </div>
-              <div class="growth-item">
-                <strong class="growth-value">57K+</strong>
-                <span class="growth-platform">YouTube</span>
-                <span class="growth-caption">YouTube audience</span>
-              </div>
-              <div class="growth-item">
-                <strong class="growth-value">300K+</strong>
-                <span class="growth-platform">Facebook</span>
-                <span class="growth-caption">Facebook audience</span>
-              </div>
-            </div>
-            <p class="growth-caveat">These are past audience milestones, not current live counts.</p>
-          </div>
-        </section>
-        <section class="profile-block">
-          <div>
-            <h2>Accounts</h2>
-          </div>
-          <div class="platform-list">
-            <div class="platform-row">
-              <strong>YouTube</strong>
-              <span>Audio visualizer videos</span>
-              <span class="platform-note">Channel active since 2020</span>
-            </div>
-            <div class="platform-row">
-              <strong>TikTok</strong>
-              <span>Short audio visualizer videos</span>
-              <span class="platform-note">Channel active since 2021</span>
-            </div>
-            <div class="platform-row">
-              <strong>Facebook</strong>
-              <span>Thilii Music page</span>
-              <span class="platform-note">Creator page</span>
-            </div>
-          </div>
-        </section>
-        <section class="profile-block">
-          <div>
-            <h2>Zedge Premium Marketplace</h2>
-          </div>
-          <div>
-            <p>I contribute digital wallpapers to the Zedge Premium Marketplace. I create wallpaper designs for mobile devices and publish them through the platform.</p>
-          </div>
-        </section>
-        <!-- To add another creator item, copy a profile-block and edit the heading and text. -->
-      </section>
+
+  <div class="profile-hero">
+    <div class="eyebrow">Creator Profile</div>
+    <h1>Content Creator</h1>
+    <p class="profile-lead">
+      Digital content creation, visual design and online creative work.
+    </p>
+  </div>
+  <!-- THILII MUSIC -->
+<section class="profile-block" id="thilii-music">
+
+  <div>
+    <h2>Thilii Music</h2>
+  </div>
+
+  <div>
+
+    <h3 class="entry-title">About</h3>
+
+    <p>
+      Thilii Music is my digital music content brand,
+      focused on audio visualizer videos and short-form
+      music content.
+    </p>
+
+    <p>
+      I started my YouTube channel in June 2020 and began
+      posting on TikTok in February 2021. My content
+      primarily features phonk, Brazilian funk, slowed
+      and reverb edits, and Avee Player visualizers.
+    </p>
+
+    <h3 class="entry-title" style="margin-top: 24px;">
+      Audience Growth
+    </h3>
+
+    <div class="growth-grid">
+
+      <div class="growth-item">
+        <strong class="growth-value">780K+</strong>
+        <span class="growth-platform">TikTok</span>
+        <span class="growth-caption">Followers milestone</span>
+      </div>
+
+      <div class="growth-item">
+        <strong class="growth-value">57K+</strong>
+        <span class="growth-platform">YouTube</span>
+        <span class="growth-caption">Subscribers milestone</span>
+      </div>
+
+      <div class="growth-item">
+        <strong class="growth-value">300K+</strong>
+        <span class="growth-platform">Facebook</span>
+        <span class="growth-caption">Followers milestone</span>
+      </div>
+
+    </div>
+
+    <p class="growth-caveat">
+      Historical audience milestones, not current live counts.
+    </p>
+
+    <h3 class="entry-title" style="margin-top: 24px;">
+      Social Media & Links
+    </h3>
+
+    <div class="platform-list">
+
+      <div class="platform-row">
+        <strong>
+          <a class="project-link" href="YOUR_YOUTUBE_URL"
+             target="_blank" rel="noopener noreferrer">YouTube</a>
+        </strong>
+        <span>Audio visualizer videos</span>
+        <span class="platform-note">Since June 2020</span>
+      </div>
+
+      <div class="platform-row">
+        <strong>
+          <a class="project-link" href="YOUR_TIKTOK_URL"
+             target="_blank" rel="noopener noreferrer">TikTok</a>
+        </strong>
+        <span>Short-form music content</span>
+        <span class="platform-note">Since February 2021</span>
+      </div>
+
+      <div class="platform-row">
+        <strong>
+          <a class="project-link" href="YOUR_FACEBOOK_URL"
+             target="_blank" rel="noopener noreferrer">Facebook</a>
+        </strong>
+        <span>Thilii Music page</span>
+        <span class="platform-note">Creator page</span>
+      </div>
+
+      <div class="platform-row">
+        <strong>Instagram</strong>
+        <span>Social media profile</span>
+        <span class="platform-note">Profile link to add</span>
+      </div>
+
+      <div class="platform-row">
+        <strong>SoundCloud</strong>
+        <span>Music platform</span>
+        <span class="platform-note">Profile link to add</span>
+      </div>
+
+      <div class="platform-row">
+        <strong>Telegram</strong>
+        <span>Community channel</span>
+        <span class="platform-note">Channel link to add</span>
+      </div>
+
+      <div class="platform-row">
+        <strong>VIZ Patch</strong>
+        <span>Avee Player image replacement tool</span>
+        <span>
+          <a class="project-link"
+             href="https://thilina200389.github.io/viz-patch/"
+             target="_blank" rel="noopener noreferrer">Visit website</a>
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- ZEDGE -->
+<section class="profile-block" id="zedge">
+
+  <div>
+    <h2>Zedge</h2>
+  </div>
+
+  <div>
+
+    <h3 class="entry-title">Independent Digital Content Creator</h3>
+
+    <p class="entry-place">ZEDGE · Self-employed</p>
+    <p class="entry-place">October 2023 – Present · Remote</p>
+
+    <p>
+      Approved Zedge creator business account since October 2023.
+    </p>
+
+    <p>
+      Published more than 2,309 digital wallpaper designs
+      on the Zedge Premium Marketplace.
+    </p>
+
+    <p>
+      Achieved more than 33,800 wallpaper downloads.
+    </p>
+
+    <p>
+      Built and maintained a diverse portfolio of digital
+      wallpapers for mobile users and created visual content
+      for a global audience.
+    </p>
+
+    <div class="growth-grid">
+
+      <div class="growth-item">
+        <strong class="growth-value">2,309+</strong>
+        <span class="growth-platform">Wallpaper Designs</span>
+      </div>
+
+      <div class="growth-item">
+        <strong class="growth-value">33,800+</strong>
+        <span class="growth-platform">Downloads</span>
+      </div>
+    </div>
+          <p style="margin-top: 18px;">
+  <a
+    class="project-link"
+    href="https://zedge.me/thilina-sandakelum"
+    target="_blank"
+    rel="noopener noreferrer">
+    View Zedge Profile
+  </a>
+</p>
+
+  </div>
+
+</section>
+<!-- ADOBE STOCK -->
+<section class="profile-block" id="adobe-stock">
+
+  <div>
+    <h2>Adobe Stock</h2>
+  </div>
+
+  <div>
+
+    <h3 class="entry-title">Contributor</h3>
+
+    <p class="entry-place">Adobe Stock · Self-employed</p>
+    <p class="entry-place">April 2023 – Present · Remote</p>
+
+    <p>
+      Working as an independent contributor on Adobe Stock,
+      creating and submitting digital visual assets to a
+      global stock content marketplace.
+    </p>
+
+    <p>My contributions include:</p>
+
+    <ul>
+      <li>Create and upload high-quality digital visual content.</li>
+      <li>Develop and maintain a growing stock asset portfolio.</li>
+      <li>Research creative trends and market demands.</li>
+      <li>Optimize asset titles, descriptions and keywords for discoverability.</li>
+      <li>Contribute AI-generated visual content to the marketplace.</li>
+    </ul>
+
+    <h3 class="entry-title" style="margin-top: 24px;">
+      Portfolio Highlights
+    </h3>
+
+    <div class="growth-grid">
+      <div class="growth-item">
+        <strong class="growth-value">1,577</strong>
+        <span class="growth-platform">Portfolio Assets</span>
+      </div>
+    </div>
+          <p style="margin-top: 18px;">
+  <a
+    class="project-link"
+    href="YOUR_ADOBE_STOCK_PROFILE_URL"
+    target="_blank"
+    rel="noopener noreferrer">
+    View Adobe Stock Portfolio
+  </a>
+</p>
+    
+  </div>
+
+</section>
+</section>
       <!-- ARTIST: Keep distinct from the Thilii Music creator identity. -->
       <section class="panel" id="artist" aria-labelledby="tab-artist" hidden>
         <div class="profile-hero">
-          <div class="eyebrow">Music</div>
-          <h1>Music</h1>
-          <p class="profile-lead">Music released and developed under the name Thilina Sandakelum.</p>
+        <div class="eyebrow">Artist Profile</div>
+        <h1>Thilina Sandakelum</h1>
+        <p class="profile-lead">
+            Independent music releases and creative work under the name
+            Thilina Sandakelum.
+        </p>
         </div>
-        <section class="profile-block">
-          <div>
-            <h2>Releases</h2>
-          </div>
-          <div class="release-list">
-            <div class="release-row">
-              <span>First release</span>
-              <strong>Kopi Crime</strong>
-              <span class="release-type">Track</span>
-            </div>
-            <div class="release-row">
-              <span>Spotify pitch</span>
-              <strong>Phantom Dream</strong>
-              <span class="release-type">Track</span>
-            </div>
+<!-- ABOUT THE ARTIST -->
+<section class="profile-block">
+
+  <div>
+    <h2>About</h2>
+  </div>
+
+  <div>
+    <p>
+      I release music under my own name, Thilina Sandakelum.
+      This profile brings together my music releases and
+      related work as an independent artist.
+    </p>
+  </div>
+
+</section>
+<!-- SELECTED TRACKS -->
+<section class="profile-block">
+
+  <div>
+    <h2>Releases</h2>
+  </div>
+
+  <div class="release-list">
+
+    <!-- Pachcha Gahapu Kella -->
+    <div class="release-row">
+      <img class="release-artwork"
+           src="https://i1.sndcdn.com/artworks-MRlvDcSDtaRf-0-t1080x1080.jpg"
+           alt="Pachcha Gahapu Kella Remix artwork"
+           loading="lazy">
+
+      <span class="release-category">Official Remix</span>
+
+      <div class="release-info">
+        <strong>Pachcha Gahapu Kella – Remix</strong>
+        <span>Kevin Smokio, Thilina Sandakelum</span>
+      </div>
+
+      <div class="release-links">
+        <a href="YOUR_PACHCHA_SPOTIFY_URL" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="YOUR_PACHCHA_YOUTUBE_URL" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+
+    <!-- Kopi Crime -->
+    <div class="release-row">
+      <img class="release-artwork"
+           src="assets/kopi-crime.jpg"
+           alt="Kopi Crime artwork"
+           loading="lazy">
+
+      <span class="release-category">Original Track</span>
+
+      <div class="release-info">
+        <strong>Kopi Crime</strong>
+        <span>Thilina Sandakelum</span>
+      </div>
+
+      <div class="release-links">
+        <a href="YOUR_KOPI_CRIME_SPOTIFY_URL" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="YOUR_KOPI_CRIME_YOUTUBE_URL" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+
+    <!-- Phantom Dream -->
+    <div class="release-row">
+      <img class="release-artwork"
+           src="https://storage.googleapis.com/routenote-release-cloudfiles/5063670967238/kUuSupaoSd_1735372379.jpg"
+           alt="Phantom Dream artwork"
+           loading="lazy">
+
+      <span class="release-category">Original Track</span>
+
+      <div class="release-info">
+        <strong>Phantom Dream</strong>
+        <span>Thilina Sandakelum</span>
+      </div>
+
+      <div class="release-links">
+        <a href="YOUR_PHANTOM_SPOTIFY_URL" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="YOUR_PHANTOM_YOUTUBE_URL" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+
+    <!-- Phantom Dream Slowed -->
+    <div class="release-row">
+      <img class="release-artwork"
+           src="assets/phantom-dream-slowed.jpg"
+           alt="Phantom Dream Slowed artwork"
+           loading="lazy">
+
+      <span class="release-category">Alternate Version</span>
+
+      <div class="release-info">
+        <strong>Phantom Dream – Slowed</strong>
+        <span>Thilina Sandakelum</span>
+      </div>
+
+      <div class="release-links">
+        <a href="YOUR_SLOWED_SPOTIFY_URL" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="YOUR_SLOWED_YOUTUBE_URL" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+
+    <!-- Phantom Dream Sped Up -->
+    <div class="release-row">
+      <img class="release-artwork"
+           src="assets/phantom-dream-sped-up.jpg"
+           alt="Phantom Dream Sped Up artwork"
+           loading="lazy">
+
+      <span class="release-category">Alternate Version</span>
+
+      <div class="release-info">
+        <strong>Phantom Dream – Sped Up</strong>
+        <span>Thilina Sandakelum</span>
+      </div>
+
+      <div class="release-links">
+        <a href="YOUR_SPED_UP_SPOTIFY_URL" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="YOUR_SPED_UP_YOUTUBE_URL" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+
+    <!-- Phantom Dream Slowed + Reverb -->
+    <div class="release-row">
+      <img class="release-artwork"
+           src="assets/phantom-dream-slowed-reverb.jpg"
+           alt="Phantom Dream Slowed and Reverb artwork"
+           loading="lazy">
+
+      <span class="release-category">Alternate Version</span>
+
+      <div class="release-info">
+        <strong>Phantom Dream – Slowed + Reverb</strong>
+        <span>Thilina Sandakelum</span>
+      </div>
+
+      <div class="release-links">
+        <a href="YOUR_REVERB_SPOTIFY_URL" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="YOUR_REVERB_YOUTUBE_URL" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<!-- FEATURED REMIX -->
+<section class="profile-block">
+
+  <div>
+    <h2>Featured Remix</h2>
+  </div>
+
+  <div class="featured-remix-card">
+
+    <img
+      class="featured-remix-artwork"
+      src="https://i1.sndcdn.com/artworks-MRlvDcSDtaRf-0-t1080x1080.jpg"
+      alt="Pachcha Gahapu Kella Remix artwork"
+      loading="lazy">
+
+    <div class="featured-remix-content">
+
+      <h3>Pachcha Gahapu Kella – Remix</h3>
+
+      <p class="featured-remix-meta">
+        Official Release · Credited Remixer
+      </p>
+
+      <p class="featured-remix-description">
+        A remix I created gained widespread popularity on TikTok
+        across Sri Lanka. Following its viral reach, the original
+        music label contacted me and officially released the track
+        with my name credited as the remixer.
+      </p>
+
+      <a
+        class="featured-remix-link"
+        href="YOUR_PACHCHA_SPOTIFY_URL"
+        target="_blank"
+        rel="noopener noreferrer">
+        Listen to the Remix ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- ARTIST PROFILES -->
+<section class="profile-block">
+
+  <div>
+    <h2>Artist Profiles</h2>
+  </div>
+
+  <div class="artist-platform-grid">
+
+    <a class="artist-platform-card"
+       href="YOUR_SPOTIFY_ARTIST_URL"
+       target="_blank" rel="noopener noreferrer">
+      <span class="artist-platform-name">Spotify</span>
+      <span class="artist-platform-description">
+        Official artist profile
+      </span>
+      <span class="artist-platform-action">Visit Profile ↗</span>
+    </a>
+
+    <a class="artist-platform-card"
+       href="YOUR_APPLE_MUSIC_URL"
+       target="_blank" rel="noopener noreferrer">
+      <span class="artist-platform-name">Apple Music</span>
+      <span class="artist-platform-description">
+        Music catalogue
+      </span>
+      <span class="artist-platform-action">Visit Profile ↗</span>
+    </a>
+
+    <a class="artist-platform-card"
+       href="YOUR_YOUTUBE_ARTIST_URL"
+       target="_blank" rel="noopener noreferrer">
+      <span class="artist-platform-name">YouTube</span>
+      <span class="artist-platform-description">
+        Official music channel
+      </span>
+      <span class="artist-platform-action">Visit Channel ↗</span>
+    </a>
+
+    <a class="artist-platform-card"
+       href="YOUR_SOUNDCLOUD_URL"
+       target="_blank" rel="noopener noreferrer">
+      <span class="artist-platform-name">SoundCloud</span>
+      <span class="artist-platform-description">
+        Music uploads
+      </span>
+      <span class="artist-platform-action">Visit Profile ↗</span>
+    </a>
+
+  </div>
+
+</section>
           </div>
         </section>
         <!-- Add future releases or streaming links in this section. -->
