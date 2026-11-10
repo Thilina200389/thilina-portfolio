@@ -42,16 +42,16 @@
     ::selection { color: #fff; background: #151515; }
     .shell { width: min(var(--width), calc(100% - 64px)); margin-inline: auto; }
 
-    /* Header: one main profile link, with the other profiles tucked away. */
+    /* Header: one clear route to the main profile; other pages stay optional. */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255,255,255,.97);
+      background: var(--paper);
       border-bottom: 1px solid var(--rule);
     }
     .header-inner {
-      min-height: 76px;
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -66,11 +66,11 @@
     }
     .brand-name {
       font-family: var(--serif);
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: -.035em;
+      letter-spacing: -.045em;
     }
-    .site-nav { display: flex; align-items: center; gap: 24px; }
+    .site-nav { display: flex; align-items: center; gap: 30px; }
     .primary-nav-link, .secondary-nav-link {
       border: 0;
       background: transparent;
@@ -80,52 +80,91 @@
       white-space: nowrap;
     }
     .primary-nav-link {
-      min-height: 40px;
-      padding: 0 0 1px;
-      border-bottom: 2px solid var(--ink);
+      position: relative;
+      padding: 10px 0;
       color: var(--ink);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
     }
-    .primary-nav-link:hover { border-color: var(--muted); }
+    .primary-nav-link::after {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      left: 0;
+      height: 2px;
+      background: var(--ink);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .primary-nav-link[aria-current="page"]::after { transform: scaleX(1); }
+    .primary-nav-link:hover::after { background: var(--muted); }
+
     .other-profiles { position: relative; }
     .other-profiles summary {
-      padding: 8px 0;
-      color: var(--quiet);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 0;
+      color: var(--muted);
       cursor: pointer;
-      font-size: 11px;
+      font-size: 12px;
       line-height: 1.4;
       list-style: none;
       white-space: nowrap;
+      transition: color .15s ease;
     }
     .other-profiles summary::-webkit-details-marker { display: none; }
-    .other-profiles summary::after { content: " +"; color: var(--muted); }
+    .other-profiles summary::after {
+      width: 6px;
+      height: 6px;
+      margin-top: -3px;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      content: "";
+      transform: rotate(45deg);
+      transition: transform .15s ease, margin .15s ease;
+    }
+    .other-profiles summary:hover,
     .other-profiles[open] summary { color: var(--ink); }
+    .other-profiles[open] summary::after {
+      margin-top: 3px;
+      transform: rotate(225deg);
+    }
     .other-profiles-menu {
       position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
+      top: calc(100% + 10px);
+      right: -12px;
       z-index: 30;
-      min-width: 160px;
-      padding: 5px 0;
+      width: 214px;
+      padding: 6px;
       border: 1px solid var(--rule-strong);
       background: var(--paper);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .07);
     }
     .secondary-nav-link {
-      display: block;
+      display: flex;
       width: 100%;
-      padding: 9px 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 10px;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
       text-align: left;
+      transition: color .15s ease, background .15s ease;
     }
-    .secondary-nav-link:hover, .secondary-nav-link[aria-current="page"] {
+    .secondary-nav-link + .secondary-nav-link {
+      border-top: 1px solid var(--rule);
+    }
+    .secondary-nav-link:hover,
+    .secondary-nav-link[aria-current="page"] {
+      background: #f7f7f7;
       color: var(--ink);
     }
     .secondary-nav-link[aria-current="page"] { font-weight: 700; }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
-    main { min-height: calc(100vh - 155px); }
     .panel { display: none; padding: 70px 0 100px; }
     .panel.active { display: block; }
     .panel[hidden] { display: none; }
@@ -276,17 +315,6 @@
     .release-row span { color: var(--muted); font-size: 11px; }
     .release-row .release-type { color: var(--quiet); font-size: 10px; text-align: right; }
 
-    .footer { border-top: 1px solid var(--ink); }
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 18px 0 22px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-    .footer strong { color: var(--ink); font-weight: 700; }
-
     @media (max-width: 760px) {
       .shell { width: min(var(--width), calc(100% - 40px)); }
       .hero { grid-template-columns: minmax(0, 1fr) 190px; gap: 28px; }
@@ -295,11 +323,13 @@
     }
     @media (max-width: 560px) {
       .shell { width: calc(100% - 34px); }
-      .header-inner { min-height: auto; flex-direction: column; align-items: flex-start; gap: 7px; padding: 13px 0 9px; }
+      .header-inner { min-height: auto; flex-direction: column; align-items: stretch; gap: 5px; padding: 12px 0 8px; }
       .brand { align-self: flex-start; }
-      .site-nav { width: 100%; justify-content: space-between; gap: 14px; }
-      .primary-nav-link { min-height: 36px; font-size: 11px; }
-      .other-profiles summary { font-size: 10px; }
+      .brand-name { font-size: 20px; }
+      .site-nav { width: 100%; justify-content: flex-start; gap: 24px; }
+      .primary-nav-link { padding: 9px 0; font-size: 12px; }
+      .other-profiles summary { padding: 9px 0; font-size: 11px; }
+      .other-profiles-menu { right: auto; left: -8px; width: 205px; }
       .panel { padding: 42px 0 68px; }
       .hero { grid-template-columns: 1fr; gap: 25px; padding-bottom: 34px; }
       h1 { margin: 15px 0 14px; font-size: clamp(48px, 13vw, 68px); }
@@ -316,7 +346,6 @@
       .growth-value { font-size: 30px; }
       .platform-row, .release-row { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
       .platform-row .platform-note, .release-row .release-type { text-align: left; }
-      .footer-inner { flex-direction: column; gap: 3px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -333,7 +362,7 @@
       <nav class="site-nav" aria-label="Main navigation">
         <button class="primary-nav-link" id="tab-professional" type="button" aria-controls="professional" aria-current="page" data-tab="professional">Professional Profile</button>
         <details class="other-profiles">
-          <summary>More</summary>
+          <summary>Other profiles</summary>
           <div class="other-profiles-menu">
             <button class="secondary-nav-link" id="tab-creator" type="button" aria-controls="creator" data-tab="creator">Content Creator</button>
             <button class="secondary-nav-link" id="tab-artist" type="button" aria-controls="artist" data-tab="artist">Music Artist</button>
@@ -479,9 +508,6 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="shell footer-inner"><span>© 2026 Thilina Sandakelum</span></div>
-  </footer>
 
   <script>
     (() => {
@@ -512,6 +538,18 @@
       navigationItems.forEach(item => {
         item.addEventListener('click', () => showSection(item.dataset.tab));
       });
+
+      if (moreProfiles) {
+        document.addEventListener('click', event => {
+          if (!moreProfiles.contains(event.target)) moreProfiles.open = false;
+        });
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && moreProfiles.open) {
+            moreProfiles.open = false;
+            moreProfiles.querySelector('summary').focus();
+          }
+        });
+      }
 
       const initialSection = location.hash.slice(1);
       if (validSections.has(initialSection)) showSection(initialSection, false);
